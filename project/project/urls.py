@@ -18,12 +18,13 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from bikini_bottom.views import home, home_map_api
+from bikini_bottom.views import home, home_map_api, custom_map_api
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", home),
-    path('api/home-map/', home_map_api)
+    path('api/home-map/', home_map_api, name="home-api"),
+    path('api/custom-map/', custom_map_api, name="custom-api")
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

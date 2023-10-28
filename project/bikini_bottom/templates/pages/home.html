@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block head %}
+
 <!-- LEAFLET -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -27,5 +28,12 @@
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(peta);
+
+    fetch("{% url 'home-api' %}")
+      .then(response => response.json())
+      .then(function(json){
+        console.log(json)
+        L.geoJson(json).addTo(peta)
+      })
   </script>
 {% endblock %}
