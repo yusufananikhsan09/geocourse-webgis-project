@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
-        <!-- Sisi Kanan -->
+        <!-- Sisi Kiri -->
         <div>
             <a class="navbar-brand" href="{% url 'home' %}">
                 <img src="/media/base/spongebob squarepatns.png" alt="" width="40" height="34">
@@ -8,12 +8,21 @@
         </div>
 
         <!-- Sisi Tengah -->
-        <div></div>
-        <a href="" class="btn">Booking Facility</a>
-        <a href="{% url 'facility_list' %}" class="btn">Propose/Manage Facility</a>
-        <a href="" class="btn">Public Infrastructure</a>
-        <a href="" class="btn">About</a>
-        <!-- Sisi Kiri -->
-        <div></div>
+        <div>
+            <a href="" class="btn">Booking Facility</a>
+            <a href="{% url 'facility_list' %}" class="btn">Propose/Manage Facility</a>
+            <a href="" class="btn">Public Infrastructure</a>
+            <a href="" class="btn">About</a>
+            </div>
+
+        <!-- Sisi Kanan -->
+        <div>
+            {{request.user}}
+            {% if request.user.is_auntheticated %}
+            <a href="{% url 'logout' %}" class="btn btn-outline-primary">Login</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="btn btn-outline-primary">Logout</a>
+            {% endif %}
+        </div>
     </div>
   </nav>
