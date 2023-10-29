@@ -8,6 +8,7 @@ class FacilityForm(forms.ModelForm):
         fields = (
             'name', 
             'types', 
+            'status',
             'location', 
             'price', 
             'price_unit',

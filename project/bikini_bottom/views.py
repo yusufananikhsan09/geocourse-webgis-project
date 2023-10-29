@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.serializers import serialize 
 from .models import Facility
 from .forms import FacilityForm
@@ -66,3 +66,33 @@ def facility_list(request):
         'data' : Facility.objects.filter(operator=request.user)
     }
     return render(request, "pages/facility_list.html", context)
+
+def facility_form_update(request,pk):
+    objek = get_object_or_404(Facility, id=pk)
+    form = FacilityForm(request.POST or None, request.FILES or None, instance=objek)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.operator = request.user
+            data.save()
+            return redirect('facility_list')
+    
+    context = {
+        'form' : form
+    }
+    return render(request, 'pages/facility_form_update.html', context)
+
+def facility_form_delete(request, pk):
+    objek = get_object_or_404(Facility, id=pk)
+    form = FacilityForm(request.POST or None, request.FILES or None, instance=objek)
+
+    if request.method == 'POST':
+        objek.delete()
+        return redirect('facility_list')
+  
+    context = {
+        'form': form
+    }
+        
+    return render(request, 'pages/facility_form_delete.html', context)

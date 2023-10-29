@@ -40,7 +40,7 @@
                     {%  elif item.status == 'planned' %}
                     <span class="badge bg-info">{{item.status}}</span>
                     {%  elif item.status == 'construction' %}
-                    <span class="badge bg-idark">{{item.status}}</span>
+                    <span class="badge bg-dark">{{item.status}}</span>
                     {%  endif %}
 
                 </td>
@@ -49,6 +49,10 @@
                 <td><img src="{{item.image.url}}" alt="" height="50px"></td>
                 <td>
                     {% if item.opens %}✅ {% else %} ⛔ {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'facility_form_update' item.id %}" class="btn btn-sm btn-success">Update</a>
+                    <a href="{% url 'facility_form_delete' item.id %}" class="btn btn-sm btn-danger">Delete</a>
                 </td>
             </tr>
             {% endfor %}
