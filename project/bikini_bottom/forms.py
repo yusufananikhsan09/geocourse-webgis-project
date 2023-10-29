@@ -11,6 +11,7 @@ class FacilityForm(forms.ModelForm):
             'location', 
             'price', 
             'price_unit',
-            'image'
+            'image',
+            'opens'
              )
         widgets = {'location': LeafletWidget()}
